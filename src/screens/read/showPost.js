@@ -15,12 +15,12 @@ export default function ShowPost({route, navigation}) {
     return (
       <View style={styles.commentView}>
           <Image
-          source= {{uri: `https://picsum.photos/id/${item.item.id}/200/300`}}
+          source= {{uri: `https://picsum.photos/id/${item.item.id+100}/200/300`}}
           style={styles.dp}
           />
         <View>
         <Text style={[styles.text, {fontWeight: 'bold'}]}>{item.item.email}</Text>
-        <Text style={styles.text}>{item.item.name}</Text>
+        <Text style={styles.text}>{item.item.name.length < 40 ? item.item.name : item.item.name.substring(1, 40) + '...'}</Text>
         </View>
       </View>
     );
@@ -51,21 +51,22 @@ export default function ShowPost({route, navigation}) {
     <View style={styles.container}>
          <TouchableOpacity onPress={onPressDelete}>
           <View style={[styles.buttonView, {borderColor: 'red'}]}>
-            <Text>{'Delete'}</Text>
+            <Text style={styles.text}>{'Delete Post'}</Text>
           </View>
         </TouchableOpacity>
-      <View style={[styles.card, {flexDirection: 'row', alignItems: 'center'}]}>
+      <View style={[styles.card, {flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start'}]}>
        
         <Image
           source={{uri: `https://picsum.photos/id/${item.id+100}/200/300`}}
           style={styles.postDesc}
         />
-        <Text style={[styles.text, {marginHorizontal: 8}]}>{item.title}</Text>
+        <Text style={[styles.text, {marginHorizontal: 8, fontStyle: 'italic', fontWeight: '600'}]}>{item.title}</Text>
       </View>
       <FlatList
         data={comments}
         renderItem={renderItem}
         ItemSeparatorComponent={ItemSeparatorComponent}
+        contentContainerStyle={styles.commentsWrap}
       />
       {/* <TouchableOpacity onPress={onPressEdit}>
         <View style={[styles.buttonView, {borderColor: 'green'}]}>

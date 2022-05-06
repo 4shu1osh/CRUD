@@ -6,46 +6,75 @@ import styles from './styles';
 import axios from 'axios';
 
 export default function Read({navigation}) {
-  const listRef = useRef(null)
+  const listRef = useRef(null);
   const dispatch = useDispatch();
   const DATA = useSelector(store => store.ReadReducer.data);
   const start = useSelector(store => store.ReadReducer.start);
   const deleted = useSelector(store => store.ReadReducer.deleted);
 
   const onEndReached = () => {
-    if(start <100){
-      dispatch({type: 'PAGINATION', payload: start + 10})
+    if (start < 100) {
+      dispatch({type: 'PAGINATION', payload: start + 10});
     }
   };
 
   useEffect(() => {
-console.log("deleted changed")
-  }, [deleted])
-  
+    console.log('deleted changed');
+  }, [deleted]);
+
   const renderItem = ({item}) => {
     return (
-      <TouchableOpacity onPress={() => {
-        navigation.navigate('ShowPost', {item})
-         axios.get(`https://jsonplaceholder.typicode.com/posts/${item.id}/comments`)
-         .then((res)=> {
-           console.log("comm---", res)
-           dispatch({type: 'COMMENT', payload: res.data})
-         })
+<View style={styles.cardContainer}>
+<TouchableOpacity
+        onPress={() => {
+          navigation.navigate('ShowPost', {item});
+          axios
+            .get(
+              `https://jsonplaceholder.typicode.com/posts/${item.id}/comments`,
+            )
+            .then(res => {
+              console.log('comm---', res);
+              dispatch({type: 'COMMENT', payload: res.data});
+            });
         }}>
         <View style={styles.card}>
           <Image
-          source={{uri: `https://picsum.photos/id/${item.id+100}/200/300`}}
-          style={styles.post}
+            source={{uri: `https://picsum.photos/id/${item.id + 100}/200/300`}}
+            style={styles.post}
           />
           <Text style={styles.info}>{item.title}</Text>
         </View>
-      </TouchableOpacity>)
-     
-  };
+      </TouchableOpacity>
+     <View style={styles.btnView}>
+     <TouchableOpacity>
+        <Image
+        source={require('../../assets/photos/heart-empty.png')}
+        style={[styles.icon, {height: 26, width: 26}]}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Image
+        source={require('../../assets/photos/chat.png')}
+        style={styles.icon}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Image
+        source={require('../../assets/photos/send.png')}
+        style={styles.icon}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Image
+        source={require('../../assets/photos/bookmark.png')}
+        style={[styles.icon, {height: 25, width: 25}]}
+        />
+      </TouchableOpacity>
 
-  useEffect(()=> {
-    axios.get
-  })
+     </View>
+</View>
+    );
+  };
 
   useEffect(() => {
     dispatch(ReadAction(start));
@@ -54,7 +83,7 @@ console.log("deleted changed")
   return (
     <View style={styles.container}>
       <FlatList
-      ref={listRef}
+        ref={listRef}
         data={DATA}
         renderItem={renderItem}
         onEndReached={onEndReached}
@@ -71,7 +100,6 @@ console.log("deleted changed")
           style={styles.img}
         />
       </TouchableOpacity>
-
     </View>
   );
 }

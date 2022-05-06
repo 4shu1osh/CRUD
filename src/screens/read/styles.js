@@ -22,23 +22,25 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
   container: {
-    justifyContent: 'center',
+    flex: 1,
+    backgroundColor: '#303030',
+    alignItems: 'center'
   },
   buttonView: {
     padding: 6,
     borderWidth: 1,
     borderRadius: 6,
-    margin: 10,
+    margin: 6,
     height: 30,
-    width: 60,
+    width: 130,
+    justifyContent: 'center'
   },
   img: {
     height: 50,
     width: 50,
     position: 'absolute',
-    bottom: 0,
-    right: 0,
-    margin: 12,
+    bottom: 12,
+    right: 6,
   },
   delete: {
     height: 30,
@@ -52,10 +54,11 @@ const styles = StyleSheet.create({
     width: '100%',
     marginVertical: 16,
     borderRadius: 20,
+    backgroundColor: '#424242'
   },
   text: {
     fontSize: 16,
-    color: 'black',
+    color: 'white',
     marginHorizontal: 16,
   },
   separator: {
@@ -71,7 +74,6 @@ const styles = StyleSheet.create({
   },
   commentView: {
     flexDirection: 'row',
-    padding: 10,
     alignItems: 'center',
   },
   postDesc: {
@@ -82,6 +84,35 @@ const styles = StyleSheet.create({
   },
   listStyle: {
       alignItems: 'center'
+  },
+  cardContainer: {
+      flexDirection: 'row'
+  },
+  btnView: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingLeft: 16
+  },
+  icon: {
+      marginVertical: 16,
+      alignSelf: 'center',
+      height: 30,
+      width: 30,
+  },
+  input: {
+    borderWidth: 1,
+    padding: 20,
+    marginVertical: 16,
+    width: 250,
+    height: 80,
+    borderColor: 'white',
+    borderRadius: 10,
+    borderWidth: 3,
+    fontSize: 20
+  },
+  commentsWrap: {
+    marginVertical:30,
+    marginHorizontal: 20
   }
 });
 

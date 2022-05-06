@@ -4,6 +4,7 @@ import CreateAction from '../../redux/create/action';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { NavigationContainer } from '@react-navigation/native';
+import styles from '../read/styles';
 
 
 export default function Create({navigation}) {
@@ -28,7 +29,7 @@ export default function Create({navigation}) {
   }
 
   return (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
+    <View style={styles.container}>
       <TextInput
         style={styles.input}
         placeholder={'Title'}
@@ -57,11 +58,4 @@ export default function Create({navigation}) {
   );
 }
 
-const styles = StyleSheet.create({
-  input: {
-    borderWidth: 1,
-    padding: 10,
-    marginVertical: 16,
-    width: 200
-  },
-});
+
